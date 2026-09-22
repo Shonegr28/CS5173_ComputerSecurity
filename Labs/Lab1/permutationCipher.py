@@ -1,0 +1,2 @@
+def permutationCipher(plaintext, key):
+    
