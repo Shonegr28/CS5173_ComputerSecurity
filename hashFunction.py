@@ -1,0 +1,2 @@
+def hashFunction(message):
+    
