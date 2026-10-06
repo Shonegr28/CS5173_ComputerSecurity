@@ -1,51 +1,58 @@
 import hashlib
 
-# Create the original message.txt file
-with open("message.txt", "w") as file:
-    file.write("Computer Security")
+# TASK 1: Computing and Storing the Hash
+Messagefile = open("message.txt", "w")
+Messagefile.write("Computer Security")
+Messagefile.close()
 
-# Read the original file
-with open("message.txt", "rb") as file:
-    data = file.read()
+# Read the message.txt file
+messageFile = open("message.txt", "rb")
+message = messageFile.read()
+messageFile.close()
 
-# Compute the SHA-256 hash
-referenceHash = hashlib.sha256(data).hexdigest()
+print("TEST1: UNCHANGED")
 
-# Store the original hash
-with open("reference_hash.txt", "w") as file:
-    file.write(referenceHash)
+# Create the reference hash
+referenceHash = hashlib.sha256(message).hexdigest()
 
-# Test 1: unchanged file
-with open("message.txt", "rb") as file:
-    data = file.read()
+# Task 2: Verifying File Integrity
+print("Reference Hash:", referenceHash)
 
-currentHash = hashlib.sha256(data).hexdigest()
+# Write the reference hash to reference_hash.txt
+writeReferenceHash = open("reference_hash.txt", "w")
+writeReferenceHash.write(referenceHash)
+writeReferenceHash.close()
 
-print("Test 1")
-print("Stored Hash: ", referenceHash)
+#compute the current hash
+currentHash = hashlib.sha256(message).hexdigest()
 print("Current Hash:", currentHash)
 
+#compare the current hash with the reference hash determine wheather they pass or fail
 if currentHash == referenceHash:
-    print("Result: PASS")
+    print("PASS \n")
 else:
-    print("Result: FAIL")
+    print("FAIL \n")
 
+print("TEST2: CHANGED")
 
-# Change the contents of message.txt
-with open("message.txt", "w") as file:
-    file.write("computer Security")
+# Change message.txt
+changeFile = open("message.txt", "w")
+changeFile.write("computer Security")
+changeFile.close()
 
-# Test 2: modified file
-with open("message.txt", "rb") as file:
-    data = file.read()
+# Read the changed file
+openChangedFile = open("message.txt", "rb")
+changedMessage = openChangedFile.read()
+openChangedFile.close()
 
-currentHash = hashlib.sha256(data).hexdigest()
+# Compute the new hash
+currentHash = hashlib.sha256(changedMessage).hexdigest()
 
-print("\nTest 2")
-print("Stored Hash: ", referenceHash)
-print("Current Hash:", currentHash)
+print("Reference Hash:", referenceHash)
+print("Current Hash after change:", currentHash)
 
+#compare the current hash with the reference hash determine wheather they pass or fail
 if currentHash == referenceHash:
-    print("Result: PASS")
+    print("PASS")
 else:
-    print("Result: FAIL")
+    print("FAIL")
