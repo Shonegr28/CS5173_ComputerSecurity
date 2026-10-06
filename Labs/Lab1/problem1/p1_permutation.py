@@ -23,5 +23,37 @@ def permutationCipher(plainText, key):
     cipherText = ''.join(cipherText) # joins the list of ciphertext
     return cipherText
 
+def permutationDecrypt(cipherText, key):
+    key = [int(char) for char in key] # turns the string to a list of integers
+    key_length = len(key) # gets the length of the key
+    plainText = [] # stores the plaintext in the list
 
-print(permutationCipher("Q9fL3XvT8pR2mN7kD1sA6cH0yZ5uJ4eBqWn","7145236"))
+    for i in range(0, len(cipherText), key_length):
+        # According to the key length, create a row for each block of ciphertext
+        row = cipherText[i:i + key_length]
+        # Testing if the correct row is created
+        # print(row)
+
+        plainRow = [""] * key_length
+        # Testing if the empty plaintext row is created correctly
+        # print(plainRow)
+
+        for j in range(key_length):
+            plainRow[j] = row[key[j] - 1]
+
+        plainText.extend(plainRow)
+
+        # Testing the plaintext after adding the current row
+        # print(plainText)
+
+    plainText = ''.join(plainText) # joins the list of plaintext
+    return plainText
+
+
+
+plainText = "Q9fL3XvT8pR2mN7kD1sA6cH0yZ5uJ4eBqWn"
+key = "7145236"
+cipherText = permutationCipher(plainText, key)
+print("Plaintext:", plainText)
+print("Ciphertext:", cipherText)
+print("Decrypted Plaintext:", permutationDecrypt(cipherText, key))

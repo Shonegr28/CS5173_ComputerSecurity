@@ -10,12 +10,14 @@ This lab goes over three cryptography Problems Permutation Cipher, SHA-256 Hash 
 ## Files
 
 - `p1_permutation.py`  
-   Given plaintext and key uses permutation to return the cipher text .The code encrypts the plaintext by splitting it into rows of 7 characters and rearranging each row using the key 7145236. It then joins all the rearranged charcters together to create the ciphertext.
+   Given plaintext and key uses permutation to return the cipher text .The code encrypts the plaintext by splitting it into rows of 7 characters and rearranging each row using the key 7145236. It then joins all the rearranged charcters together to create the ciphertext. Using reverse process decrypts the ciphertext.
 
     Run Command: python3 p1_permutation.py
     INPUT: PLAINTEXT: Q9fL3XvT8pR2mN7kD1sA6cH0yZ5uJ4eBqWn
            KEY: 7 1 4 5 2 3 6
-    OUTPUT: CIPHERTEXT:  93XfLvQ82mpRNTksAD167HZ50yuc4qWeBnJ
+    OUTPUT: Plaintext: Q9fL3XvT8pR2mN7kD1sA6cH0yZ5uJ4eBqWn
+            Ciphertext: 93XfLvQ82mpRNTksAD167HZ50yuc4qWeBnJ
+            Decrypted Plaintext: Q9fL3XvT8pR2mN7kD1sA6cH0yZ5uJ4eBq
 
 - `p2_hash.py`  
   Uses SHA-256 to check if the files have been changed or not providing us with intergrity. The code open the message file writes the "Computer Security" then 
